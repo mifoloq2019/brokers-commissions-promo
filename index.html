@@ -237,6 +237,69 @@
       .section { padding: 18px 16px; }
       .hero { padding: 26px 22px; }
     }
+
+    /* ── Мобильная адаптация ────────────────────────────────── */
+    @media (max-width: 600px) {
+      .wrap { width: calc(100% - 16px); padding: 12px 0 40px; }
+      .hero { padding: 20px 16px 18px; border-radius: 18px; margin-bottom: 14px; }
+      .hero h1 { font-size: 20px; }
+      .tabs { gap: 7px; margin-bottom: 12px; }
+      .tab-btn { font-size: 13px; padding: 9px 13px; border-radius: 12px; }
+      .section { padding: 14px 12px; border-radius: 18px; }
+      .notice { padding: 12px 14px; }
+      .notice-title { font-size: 14px; }
+
+      /* Комиссии: горизонтальный скролл с уменьшенными колонками */
+      .commissions-wrap { border-radius: 12px; }
+      table.commissions { min-width: 480px; table-layout: auto; }
+      table.commissions th:first-child,
+      table.commissions td:first-child { width: auto; padding-right: 10px; }
+      table.commissions th:nth-child(2),
+      table.commissions td:nth-child(2) { width: auto; padding-left: 10px; }
+      table.commissions th:last-child,
+      table.commissions td:last-child { width: auto; }
+      table.data th, table.data td { padding: 10px 12px; font-size: 13px; }
+      table.data th { font-size: 11px; }
+
+      /* Промо-таблица: карточки */
+      .table-wrap { border: none; border-radius: 0; overflow: visible; }
+      table.promos { min-width: 0; display: block; }
+      table.promos thead { display: none; }
+      table.promos tbody { display: flex; flex-direction: column; gap: 12px; }
+      table.promos tr {
+        display: flex;
+        flex-direction: column;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 14px 14px 12px;
+        gap: 6px;
+      }
+      table.promos tr.aton-row { background: #f3ecff; border-color: rgba(112,0,255,0.2); }
+      table.promos td {
+        display: flex;
+        flex-direction: column;
+        border: none;
+        padding: 0;
+        font-size: 13px;
+      }
+      table.promos td:not(.muted-cell):not(.broker)::before {
+        content: attr(data-label);
+        font-size: 10.5px;
+        font-weight: 750;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 2px;
+      }
+      table.promos td.broker {
+        font-size: 15px;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      table.promos td.muted-cell { display: none; }
+      .promo-detail { font-size: 13px; }
+    }
   </style>
 </head>
 <body>
@@ -329,65 +392,65 @@
             <tbody>
               <tr>
                 <td class="broker">Т-Инвестиции</td>
-                <td><span class="pill yes">Есть</span></td>
-                <td class="promo-detail">Подарочные акции до 75 000 ₽
+                <td data-label="Промо акции"><span class="pill yes">Есть</span></td>
+                <td class="promo-detail" data-label="Подробнее">Подарочные акции до 75 000 ₽
 Кэшбэк за сделки: 50% от торговой комиссии за сделки с любыми активами</td>
-                <td>от ~100 тыс.</td>
-                <td>через 14 дней</td>
+                <td data-label="Мин. порог">от ~100 тыс.</td>
+                <td data-label="Срок удержания">через 14 дней</td>
               </tr>
               <tr>
                 <td class="broker">Совкомбанк</td>
-                <td><span class="pill no">Нет</span></td>
+                <td data-label="Промо акции"><span class="pill no">Нет</span></td>
                 <td class="muted-cell">—</td>
                 <td class="muted-cell">—</td>
                 <td class="muted-cell">—</td>
               </tr>
               <tr>
                 <td class="broker">БКС</td>
-                <td><span class="pill yes">Есть</span></td>
-                <td class="promo-detail">Кэшбэк 0,5%, максимум — 150 000 ₽</td>
-                <td>от 1 млн</td>
-                <td>выплата до 45 дн. после месяца</td>
+                <td data-label="Промо акции"><span class="pill yes">Есть</span></td>
+                <td class="promo-detail" data-label="Подробнее">Кэшбэк 0,5%, максимум — 150 000 ₽</td>
+                <td data-label="Мин. порог">от 1 млн</td>
+                <td data-label="Срок удержания">выплата до 45 дн. после месяца</td>
               </tr>
               <tr>
                 <td class="broker">Альфа</td>
-                <td><span class="pill yes">Есть</span></td>
-                <td class="promo-detail">Кэшбэк за пополнение в зависимости от суммы пополнения (максимум 10 млн ₽):
+                <td data-label="Промо акции"><span class="pill yes">Есть</span></td>
+                <td class="promo-detail" data-label="Подробнее">Кэшбэк за пополнение в зависимости от суммы пополнения (максимум 10 млн ₽):
 <span class="scale-list"><span>от 100 тыс. ₽ — 1%</span><span>от 500 тыс. ₽ — 0,5%</span><span>от 20 млн ₽ — 0,25%</span><span>от 100 млн ₽ — 0,2%</span><span class="scale-accent">от 1 млрд ₽ — 0,1%</span></span></td>
-                <td>от 100 тыс.</td>
-                <td>Выплата проходит в два этапа: 50% при сохранении активов на счёте до 31.12.2026 и ещё 50% — до 31.03.2027</td>
+                <td data-label="Мин. порог">от 100 тыс.</td>
+                <td data-label="Срок удержания">Выплата проходит в два этапа: 50% при сохранении активов на счёте до 31.12.2026 и ещё 50% — до 31.03.2027</td>
               </tr>
               <tr>
                 <td class="broker">Сбер</td>
-                <td><span class="pill yes">Есть</span></td>
-                <td class="promo-detail">Кешбэк до 0,45% за портфель (макс. 10 млн ₽) + до 0,5% за акции Сбера (макс. 3 млн ₽), суммарно до 13 млн. Выплаты на 3-й / 6-й (и 11-й при крупных суммах) месяц. За ИИС — доп. до 50 тыс ₽. 30 дней торговли без брокерской комиссии</td>
-                <td>от 100 тыс.</td>
-                <td>держать ≥70% переведённого, выплаты на 3 / 6 / (11) мес.</td>
+                <td data-label="Промо акции"><span class="pill yes">Есть</span></td>
+                <td class="promo-detail" data-label="Подробнее">Кешбэк до 0,45% за портфель (макс. 10 млн ₽) + до 0,5% за акции Сбера (макс. 3 млн ₽), суммарно до 13 млн. Выплаты на 3-й / 6-й (и 11-й при крупных суммах) месяц. За ИИС — доп. до 50 тыс ₽. 30 дней торговли без брокерской комиссии</td>
+                <td data-label="Мин. порог">от 100 тыс.</td>
+                <td data-label="Срок удержания">держать ≥70% переведённого, выплаты на 3 / 6 / (11) мес.</td>
               </tr>
               <tr>
                 <td class="broker">Финам</td>
-                <td><span class="pill yes">Есть</span></td>
-                <td class="promo-detail">Программа «Выгодный переход»: бонус до ~2% от перенесённых активов</td>
-                <td>от 35 тыс.</td>
-                <td>через 90 дней</td>
+                <td data-label="Промо акции"><span class="pill yes">Есть</span></td>
+                <td class="promo-detail" data-label="Подробнее">Программа «Выгодный переход»: бонус до ~2% от перенесённых активов</td>
+                <td data-label="Мин. порог">от 35 тыс.</td>
+                <td data-label="Срок удержания">через 90 дней</td>
               </tr>
               <tr>
                 <td class="broker">ГПБ</td>
-                <td><span class="pill no">Нет</span></td>
+                <td data-label="Промо акции"><span class="pill no">Нет</span></td>
                 <td class="muted-cell">—</td>
                 <td class="muted-cell">—</td>
                 <td class="muted-cell">—</td>
               </tr>
               <tr>
                 <td class="broker">КИТ Финанс</td>
-                <td><span class="pill no">Нет</span></td>
+                <td data-label="Промо акции"><span class="pill no">Нет</span></td>
                 <td class="muted-cell">—</td>
                 <td class="muted-cell">—</td>
                 <td class="muted-cell">—</td>
               </tr>
               <tr class="aton-row">
                 <td class="broker">АТОН</td>
-                <td><span class="pill no">Нет</span></td>
+                <td data-label="Промо акции"><span class="pill no">Нет</span></td>
                 <td class="muted-cell">—</td>
                 <td class="muted-cell">—</td>
                 <td class="muted-cell">—</td>
